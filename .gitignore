@@ -3,3 +3,4 @@ templ.iml
 
 **/node_modules/**
 **/dist/**
+**/target/**

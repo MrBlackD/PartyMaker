@@ -17,40 +17,29 @@ public class Application {
     @Bean
     public CommandLineRunner demo(UserRepository repository) {
         return (args) -> {
-            // save a couple of customers
+            // добавление новых пользователей
             repository.save(new User("Jack", "6"));
             repository.save(new User("Chloe", "1"));
             repository.save(new User("Kim", "5"));
             repository.save(new User("David", "8"));
             repository.save(new User("Michelle", "9"));
 
-            // fetch all customers
-            log.info("Customers found with findAll():");
+            // вывод всех пользователей
+            log.info("вывод всех пользователей - findAll():");
             log.info("-------------------------------");
             for (User user : repository.findAll()) {
                 log.info(user.toString());
             }
             log.info("");
 
-            // fetch an individual customer by ID
+            // вывод пользоователя с конкретным id
             repository.findById(1L)
                     .ifPresent(user -> {
-                        log.info("Customer found with findById(1L):");
+                        log.info("вывод пользоователя с id = 1");
                         log.info("--------------------------------");
                         log.info(user.toString());
                         log.info("");
                     });
-
-            // fetch customers by last name
-            log.info("Customer found with findByName('Bauer'):");
-            log.info("--------------------------------------------");
-            repository.findByName("Bauer").forEach(name -> {
-                log.info(name.toString());
-            });
-            // for (Customer bauer : repository.findByLastName("Bauer")) {
-            // 	log.info(bauer.toString());
-            // }
-            log.info("");
         };
     }
 

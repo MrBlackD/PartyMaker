@@ -20,7 +20,9 @@
   "homepage": "https://github.com/MrBlackD/PartyMaker#readme",
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.2",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

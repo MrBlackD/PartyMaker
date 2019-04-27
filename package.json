@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MrBlackD/PartyMaker#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",

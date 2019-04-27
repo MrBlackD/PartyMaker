@@ -12,7 +12,7 @@ class Application extends React.Component{
                 <BrowserRouter>
                     <Link to={"/"}>Вход</Link>
                     <Link to={"/registration"}>Регистрация</Link>
-                    <Route path={"/"} exect component={AuthForm}/>
+                    <Route path={"/"} exact component={AuthForm}/>
                     <Route path={"/registration"}  component={RegistrationForm}/>
                 </BrowserRouter>
             </Provider>

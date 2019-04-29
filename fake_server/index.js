@@ -10,6 +10,7 @@ const fakeData = {
 
 app.use((req,res,next)=>{
     res.setHeader("Access-Control-Allow-Origin","*");
+    console.log("fakeData",fakeData)
     next()
 })
 
@@ -22,6 +23,18 @@ app.get("/auth",(req,res)=>{
     }else{
         console.log("BAD")
         res.status(401).send();
+    }
+})
+
+app.get("/reg",(req,res)=>{
+    console.log("HERE")
+    const {login,password} = req.query;
+    const alredyExist = fakeData.users[login];
+    if(alredyExist){
+        res.status(400).send("Login is busy");
+    } else {
+        fakeData.users[login] = {password};
+        res.send("OK");
     }
 })
 app.listen(8080);

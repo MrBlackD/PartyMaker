@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import {connect} from "react-redux"
+import {auth} from "../../actionCreators/authActionCreators"
 
 class AuthForm extends React.Component {
     constructor(props){
@@ -15,29 +17,36 @@ class AuthForm extends React.Component {
             params:{login:this.login.value,password:this.password.value}
         }).then((res)=>{
             console.log(res)
-            alert("auth tokern: " +res.data.authToken)
+            this.props.auth(res.data.authToken)
         }).catch(err=>{
             alert(err);
         })
     }
     render(){
-        
-        return (
-            <div>
-                <h1>Вход</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input type={"text"} name={"login"} placeholder={"Enter your login"} ref={(ref)=>this.login = ref}/>
-                    <input 
-                        type={"password"} 
-                        name={"password"} 
-                        placeholder={"Enter your password"} 
-                        ref={(ref)=>this.password = ref}
-                    />
-                    <button type={"submit"}>Log In</button>
-                </form>
-            </div>
-        )
+        if(this.props.authToken!=null){
+            return this.props.children;
+        } else {
+            return (
+                <div>
+                    <h1>Вход</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type={"text"} name={"login"} placeholder={"Enter your login"} ref={(ref)=>this.login = ref}/>
+                        <input 
+                            type={"password"} 
+                            name={"password"} 
+                            placeholder={"Enter your password"} 
+                            ref={(ref)=>this.password = ref}
+                        />
+                        <button type={"submit"}>Log In</button>
+                    </form>
+                </div>
+            )
+        }
     }
 }
 
-export default AuthForm;
+const mapStateToProps = (state) => ({
+    authToken:state.auth
+})
+
+export default connect(mapStateToProps,{auth})(AuthForm);

@@ -1,11 +1,8 @@
-import {createStore, combineReducers} from "redux";
+import {createStore} from "redux";
+import reducers from "../reducers"
 
-const testReducer = (state = 0,action) => {
-    return state;
-}
+const store = createStore(reducers);
 
-const reducers = combineReducers({
-    testReducer
-})
+window.store = store;
 
-export default createStore(reducers);
+export default store;

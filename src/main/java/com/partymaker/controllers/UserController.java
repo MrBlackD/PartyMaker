@@ -1,6 +1,5 @@
 package com.partymaker.controllers;
 
-import com.partymaker.Application;
 import com.partymaker.entity.User;
 import com.partymaker.entity.UserRepository;
 import org.slf4j.Logger;
@@ -19,6 +18,9 @@ public class UserController {
 
     @RequestMapping("/registration")
     public boolean registration(String login, String password) {
+        if (login == null || password == null) {
+            return false;
+        }
         try {
             userRepository.save(new User(login, password)); // добавляем в базу нового пользователя
             return true;

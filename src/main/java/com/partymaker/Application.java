@@ -18,16 +18,15 @@ public class Application {
     public CommandLineRunner demo(UserRepository repository) {
         return (args) -> {
             // добавление новых пользователей
-            repository.save(new User("Kim", "123"));
-//            repository.save(new User("Kim", "1232")); // выкидывает исключение по уникальности login
-            repository.save(new User("Jack", "123"));
-            repository.save(new User("Chloe", "345"));
-            repository.save(new User("David", "324"));
-            repository.save(new User("Michelle", "234"));
+//            repository.save(new User("Kim", "123"));
+//            repository.save(new User("Jack", "123"));
+//            repository.save(new User("Chloe", "345"));
+//            repository.save(new User("David", "324"));
+//            repository.save(new User("Michelle", "234"));
 
             // получение пользователя по логину
-            User user = repository.findByLogin("Kim");
-            log.info("Пользователь Kim" + user);
+//            User user = repository.findByLogin("Kim");
+//            log.info("Пользователь Kim" + user);
 
             // вывод пользоователя с конкретным id
 //            repository.findById(1L)

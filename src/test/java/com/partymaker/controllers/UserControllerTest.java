@@ -1,31 +1,67 @@
 package com.partymaker.controllers;
 
+import org.junit.Before;;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class UserControllerTest {
 
     @Autowired
     private UserController userController;
 
-
-//    @Test(expected = Exception.class)
-    @Test
-    public void loginRegistrationUnique() {
-        String login = "Jack";
-        String password = "12345";
-//        userController.loginRegistration(login, password);
-//        userController.loginRegistration(login, password);
+    @Before
+    public void beforeTests() {
+        userController.registration("Devid", "12345");
+        userController.registration("Pol", "1928");
+        userController.registration("Kevin", "9876");
     }
 
     @Test
-    public void loginAuthorization() {
+    public void controllerIsNotNull() {
+        assertThat(userController).isNotNull();
+    }
 
+    @Test
+    public void registrationNewUser() {
+        assertTrue(userController.registration("Mark", "2468"));
+    }
+
+    @Test
+    public void registrationUniqueUser() {
+        assertFalse(userController.registration("Devid", "12345"));
+    }
+
+    @Test
+    public void registrationWithNullArgument() {
+        assertFalse(userController.registration("Tom", null));
+        assertFalse(userController.registration(null, "123"));
+        assertFalse(userController.registration(null, null));
+    }
+
+    @Test
+    public void authorizationUserNotExists() {
+        assertNull(userController.authorization("Antuan", "123"));
+    }
+
+    @Test
+    public void authorizationWrongPassword() {
+        assertNull(userController.authorization("Devid", "000"));
+    }
+
+    @Test
+    public void authorizationWithNullArgument() {
+        assertNull(userController.authorization("Devid", null));
+        assertNull(userController.authorization(null, "12345"));
+        assertNull(userController.authorization(null, null));
     }
 }

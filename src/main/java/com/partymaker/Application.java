@@ -1,6 +1,5 @@
 package com.partymaker;
 
-import com.partymaker.controllers.UserController;
 import com.partymaker.entity.UserRepository;
 import com.partymaker.entity.User;
 import org.slf4j.Logger;
@@ -9,8 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @SpringBootApplication
 public class Application {
@@ -30,7 +27,7 @@ public class Application {
 
             // получение пользователя по логину
             User user = repository.findByLogin("Kim");
-            log.info("Пользователь Kim" + user.toString());
+            log.info("Пользователь Kim" + user);
 
             // вывод пользоователя с конкретным id
 //            repository.findById(1L)

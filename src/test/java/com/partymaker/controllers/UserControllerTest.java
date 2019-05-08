@@ -1,5 +1,6 @@
 package com.partymaker.controllers;
 
+import com.partymaker.entity.User;
 import org.junit.Before;;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,6 +47,13 @@ public class UserControllerTest {
         assertFalse(userController.registration("Tom", null));
         assertFalse(userController.registration(null, "123"));
         assertFalse(userController.registration(null, null));
+    }
+
+    @Test
+    public void authorizationUser() {
+        User user = userController.authorization("Devid", "12345");
+        assertEquals("Devid", user.getLogin());
+        assertEquals("12345", user.getPassword());
     }
 
     @Test

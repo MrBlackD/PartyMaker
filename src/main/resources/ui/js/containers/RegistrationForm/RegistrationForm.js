@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Box, Form, FormField, Button, Heading, TextInput } from "grommet";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 class RegistrationForm extends React.Component{
     constructor(props){
@@ -24,20 +26,21 @@ class RegistrationForm extends React.Component{
     
     render(){
         return (
-            <div>
-                <h1>Регистрация</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Логин
-                        <input type="text" name="login" id="login" ref={ref=>this.login = ref}/>
-                    </label>
-                    <label>
-                        Пароль
-                        <input type="text" name="password" id="password" ref={ref=>this.password = ref}/>
-                    </label>
-                    <input type="submit" value="Отправить" />
-                </form>
-            </div>
+            <React.Fragment>
+                <Heading margin="none">Регистрация</Heading>
+                <Box direction="column" width="medium" pad="small" border={{ color: 'brand', size: 'medium' }}>
+                    <Form onSubmit={this.handleSubmit}>
+                        <FormField label="Login">
+                            <TextInput placeholder="Enter your login" ref={(ref) => this.login = ref} />
+                        </FormField>
+                        <FormField label="Password">
+                            <TextInput type={"password"} placeholder="Enter your password" ref={(ref) => this.password = ref} />
+                        </FormField>
+                        <Button primary label="Sign In" type={"submit"}/>
+                        <Link to="/login">Вход</Link>
+                    </Form>
+                </Box>
+            </React.Fragment>
         );
     }
 }
